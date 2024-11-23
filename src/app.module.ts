@@ -3,17 +3,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './modules/users/users.module';
-import { TransactionsModule } from './modules/transactions/transactions.module';
+import { AccountsModule } from './modules/accounts/accounts.module';
+import { User } from './modules/users/user.entity';
+import { Account } from './modules/accounts/account.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'sqlite',
     database: 'db.sqlite',
-    entities: [],
+    entities: [User, Account],
     synchronize: true
   }),
     UsersModule, 
-    TransactionsModule],
+    AccountsModule],
   controllers: [AppController],
   providers: [AppService],
 })
