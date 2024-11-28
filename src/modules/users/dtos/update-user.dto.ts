@@ -1,4 +1,4 @@
-import { IsEmail, isString, IsOptional, IsString, IsNumber } from 'class-validator';
+import { IsEmail, isString, IsOptional, IsString, IsNumber, Length, Matches } from 'class-validator';
 
 export class UpdateUserDto {
 
@@ -6,9 +6,11 @@ export class UpdateUserDto {
     @IsOptional()
     name: string;
 
-    @IsNumber()
+    @IsString()
     @IsOptional()
-    cpf: number;
+    @Length(11, 11, { message: 'CPF must have exactly 11 numbers' })
+    @Matches(/^\d+$/, { message: 'CPF must contain only numbers' })
+    cpf: string;
 
     @IsEmail()
     @IsOptional()

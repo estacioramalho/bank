@@ -1,4 +1,5 @@
 import { AfterInsert, AfterRemove, AfterUpdate, Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Length } from 'class-validator';
 
 @Entity()
 export class User {
@@ -9,7 +10,7 @@ export class User {
     name: string;
     
     @Column({ unique: true })
-    cpf: number;
+    cpf: string;
 
     @Column({ unique: true })
     email: string;

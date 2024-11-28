@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Patch, Delete, Param, Query } from '@nestjs/common';
+import { Body, Controller, Post, Get, Patch, Delete, Param, Query, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
@@ -13,8 +13,12 @@ constructor(private usersService: UsersService) {}
     }
 
     @Get('/find/:cpf')
-    findUser(@Param('cpf') cpf: string) {
-        return this.usersService.findCPF(parseInt(cpf));
+    async findUser(@Param('cpf') cpf: string) {
+        const user = await this.usersService.findCPF(cpf);
+        if (!user) {
+            throw new NotFoundException('user not found');
+        }
+        return user;
     }
 
     @Get('/find')
@@ -23,7 +27,7 @@ constructor(private usersService: UsersService) {}
     }
 
     @Delete('/delete/:cpf')
-    removeUser(@Param('cpf') cpf: number) {
+    removeUser(@Param('cpf') cpf: string) {
         return this.usersService.remove(cpf);
     }
 

@@ -1,11 +1,12 @@
-import { IsEmail, IsString, IsNumber } from 'class-validator';
+import { IsEmail, IsString, IsNumber, Length } from 'class-validator';
 
 export class CreateUserDto {
     @IsString()
     name: string;
 
-    @IsNumber()
-    cpf: number;
+    @IsString()
+    @Length(11, 11)
+    cpf: string;
 
     @IsEmail()
     email: string;
