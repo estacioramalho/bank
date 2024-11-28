@@ -3,7 +3,7 @@ import { AfterInsert, AfterRemove, AfterUpdate, Entity, Column, PrimaryGenerated
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    id: string;
 
     @Column()
     name: string;
@@ -29,6 +29,6 @@ export class User {
 
     @AfterRemove()
     logRemove() {
-        console.log('Removed user with id', this.id);
+        console.log('Removed user with cpf', this.cpf);
     }
 }
