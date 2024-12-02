@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Patch, Delete, Param, Query, NotFoundException } from '@nestjs/common';
+import { Body, Controller, Post, Get, Patch, Delete, Param, Query, NotFoundException, UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
@@ -12,6 +12,7 @@ constructor(private usersService: UsersService) {}
         this.usersService.create(body.name, body.cpf, body.email, body.password);
     }
 
+    @UseInterceptors(ClassSerializerInterceptor)
     @Get('/find/:cpf')
     async findUser(@Param('cpf') cpf: string) {
         const user = await this.usersService.findCPF(cpf);
