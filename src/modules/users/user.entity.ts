@@ -4,7 +4,7 @@ import  { Exclude } from 'class-transformer';
 @Entity()
 export class User {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    user_id: string;
 
     @Column()
     name: string;
@@ -21,12 +21,12 @@ export class User {
 
     @AfterInsert()
     logInsert() {
-        console.log('Inserted user with id', this.id);
+        console.log('Inserted user with id', this.user_id);
     }
 
     @AfterUpdate()
     logUpdate() {
-        console.log('Updated user with id', this.id);
+        console.log('Updated user with id', this.user_id);
     }
 
     @AfterRemove()

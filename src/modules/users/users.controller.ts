@@ -32,8 +32,8 @@ constructor(private usersService: UsersService) {}
         return this.usersService.remove(cpf);
     }
 
-    @Patch('/patch/:id')
-    updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
-        return this.usersService.update(id, body);
+    @Patch('/patch/:user_id')
+    updateUser(@Param('user_id') user_id: string, @Body() body: UpdateUserDto) {
+        return this.usersService.update(user_id, body);
     }
 }

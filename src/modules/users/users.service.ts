@@ -17,8 +17,8 @@ export class UsersService {
         return this.repo.findOneBy({ cpf });
     }
 
-    findID(id: string) {
-        return this.repo.findOneBy({ id });
+    findID(user_id: string) {
+        return this.repo.findOneBy({ user_id });
     }
 
     findName(name: string) {

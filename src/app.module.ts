@@ -4,8 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './modules/users/users.module';
 import { AccountsModule } from './modules/accounts/accounts.module';
+import { TransactionsModule } from './modules/transactions/transactions.module';
 import { User } from './modules/users/user.entity';
 import { Account } from './modules/accounts/account.entity';
+
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -15,7 +17,7 @@ import { Account } from './modules/accounts/account.entity';
     synchronize: true
   }),
     UsersModule, 
-    AccountsModule],
+    AccountsModule, TransactionsModule],
   controllers: [AppController],
   providers: [AppService],
 })
